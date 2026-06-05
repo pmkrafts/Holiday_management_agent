@@ -1,0 +1,6 @@
+.kilo/
+__pycache__/
+*.pyc
+.env
+venv/
+docs/
