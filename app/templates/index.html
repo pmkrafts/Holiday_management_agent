@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holiday Agent</title>
+    <!-- Link to the stylesheet served by FastAPI under /static. -->
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <div class="container">
+        <!-- Page header -->
         <h1>🌍 Holiday Agent</h1>
         <p class="subtitle">Plan your perfect trip with AI</p>
 
+        <!-- Trip planning form; all fields are validated before submission. -->
         <form id="trip-form">
             <div class="form-group">
                 <label for="destination">Destination</label>
@@ -47,11 +50,13 @@
             <button type="submit" class="btn-submit">Generate Itinerary</button>
         </form>
 
+        <!-- Result section: hidden until the API returns a successful itinerary. -->
         <div id="result" class="result hidden">
             <h2>✨ Your Itinerary</h2>
             <div id="result-content"></div>
         </div>
 
+        <!-- Loading spinner: shown while waiting for the backend response. -->
         <div id="loading" class="loading hidden">
             <div class="spinner"></div>
             <p>Planning your trip...</p>
@@ -59,16 +64,21 @@
     </div>
 
     <script>
+        // DOM references for the form and status containers.
         const form = document.getElementById('trip-form');
         const resultDiv = document.getElementById('result');
         const resultContent = document.getElementById('result-content');
         const loadingDiv = document.getElementById('loading');
 
+        // Handle form submission: collect inputs, call the backend, and render the Markdown result.
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // Reset the UI state before starting the request.
             resultDiv.classList.add('hidden');
             loadingDiv.classList.remove('hidden');
 
+            // Build the JSON payload from form values.
             const data = {
                 destination: document.getElementById('destination').value,
                 start_date: document.getElementById('start_date').value,
@@ -87,6 +97,7 @@
                 const result = await response.json();
 
                 if (response.ok) {
+                    // Render the Markdown itinerary as HTML using the marked library.
                     resultContent.innerHTML = marked.parse(result.markdown);
                     resultDiv.classList.remove('hidden');
                 } else {
@@ -95,10 +106,12 @@
             } catch (err) {
                 alert('Network error: ' + err.message);
             } finally {
+                // Hide the spinner regardless of success or failure.
                 loadingDiv.classList.add('hidden');
             }
         });
     </script>
+    <!-- marked library converts Markdown returned by the API into HTML for display. -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>

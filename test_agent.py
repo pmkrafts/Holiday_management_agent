@@ -1,14 +1,21 @@
 from agents.crew import HolidayCrew
 
-result, saved_path = HolidayCrew().kickoff({
+# Sample trip inputs used to exercise the HolidayCrew locally without the web server.
+# Adjust these values to test different destinations, budgets, or interests.
+sample_trip = {
     "destination": "Sikkim",
     "start_date": "2026-07-01",
     "end_date": "2026-07-05",
     "budget": 40000,
     "travelers": 2,
     "interests": "mountain, nightlife, trekking"
-})
+}
+
+# Kick off the planner + researcher crew and print the generated itinerary.
+result, saved_path = HolidayCrew().kickoff(sample_trip)
 print("\n\n=== FINAL ITINERARY ===\n")
 print(result)
+
+# Print the disk path when the plan was successfully persisted.
 if saved_path:
     print(f"\n💾 Saved to: {saved_path}")

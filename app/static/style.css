@@ -1,9 +1,11 @@
+/* Global reset and base box-sizing for predictable layout. */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Full-page gradient background centered with Flexbox. */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -14,6 +16,7 @@ body {
     padding: 2rem;
 }
 
+/* Main card container for the form and results. */
 .container {
     background: #ffffff;
     border-radius: 16px;
@@ -23,6 +26,7 @@ body {
     max-width: 600px;
 }
 
+/* Page title and subtitle. */
 h1 {
     text-align: center;
     color: #333;
@@ -36,17 +40,20 @@ h1 {
     font-size: 0.95rem;
 }
 
+/* Form layout using vertical stacking with gaps. */
 form {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
 }
 
+/* Row variant that places two form groups side by side. */
 .form-row {
     display: flex;
     gap: 1rem;
 }
 
+/* Individual label + input group; expands to fill available width. */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -60,6 +67,7 @@ label {
     font-size: 0.9rem;
 }
 
+/* Input and textarea styling with a subtle focus border. */
 input,
 textarea {
     padding: 0.75rem;
@@ -80,6 +88,7 @@ textarea {
     min-height: 80px;
 }
 
+/* Primary call-to-action button with hover lift effect. */
 .btn-submit {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -97,6 +106,7 @@ textarea {
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
+/* Result panel: appears below the form after a successful API call. */
 .result {
     margin-top: 2rem;
     padding: 1.5rem;
@@ -116,6 +126,7 @@ textarea {
     line-height: 1.6;
 }
 
+/* Loading spinner and message shown during API requests. */
 .loading {
     margin-top: 2rem;
     text-align: center;
@@ -138,6 +149,7 @@ textarea {
     }
 }
 
+/* Utility class to hide elements until they are needed. */
 .hidden {
     display: none;
 }

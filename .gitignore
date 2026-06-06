@@ -5,3 +5,5 @@ __pycache__/
 venv/
 docs/
 res.txt
+.vscode/
+plans/
